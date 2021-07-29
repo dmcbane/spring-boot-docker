@@ -8,5 +8,5 @@ docker compose build dev
 
 ## Run the dev service for development
 ```
-USER=$(whoami) USERID=$(id -u) docker compose run --rm -p 8080:8080 dev /bin/bash
+USER=$(whoami) USERID=$(id -u) PRJ="./project" docker compose run --rm -p 8080:8080 dev /bin/bash
 ```
