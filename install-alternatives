@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+scrpth="$(cd "$(dirname "$0")"; pwd -P)"
+
+sudo update-alternatives --install /usr/bin/jar jar ${scrpth}/bin/jar 100 \
+                         --slave /usr/share/man/man1/jar.1.gz jar.1.gz ${scrpth}/man/man1/jar.1.gz
+sudo update-alternatives --install /usr/bin/jarsigner jarsigner ${scrpth}/bin/jarsigner 100 \
+                         --slave /usr/share/man/man1/jarsigner.1.gz jarsigner.1.gz ${scrpth}/man/man1/jarsigner.1.gz
+sudo update-alternatives --install /usr/bin/java java ${scrpth}/bin/java 100 \
+                         --slave /usr/share/man/man1/java.1.gz java.1.gz ${scrpth}/man/man1/java.1.gz
+sudo update-alternatives --install /usr/bin/javac javac ${scrpth}/bin/javac 100 \
+                         --slave /usr/share/man/man1/javac.1.gz javac.1.gz ${scrpth}/man/man1/javac.1.gz
+sudo update-alternatives --install /usr/bin/javadoc javadoc ${scrpth}/bin/javadoc 100 \
+                         --slave /usr/share/man/man1/javadoc.1.gz javadoc.1.gz ${scrpth}/man/man1/javadoc.1.gz
+sudo update-alternatives --install /usr/bin/javap javap ${scrpth}/bin/javap 100 \
+                         --slave /usr/share/man/man1/javap.1.gz javap.1.gz ${scrpth}/man/man1/javap.1.gz
+sudo update-alternatives --install /usr/bin/jcmd jcmd ${scrpth}/bin/jcmd 100
+sudo update-alternatives --install /usr/bin/jconsole jconsole ${scrpth}/bin/jconsole 100 \
+                         --slave /usr/share/man/man1/jconsole.1.gz jconsole.1.gz ${scrpth}/man/man1/jconsole.1.gz
+sudo update-alternatives --install /usr/bin/jdb jdb ${scrpth}/bin/jdb 100 \
+                         --slave /usr/share/man/man1/jdb.1.gz jdb.1.gz ${scrpth}/man/man1/jdb.1.gz
+sudo update-alternatives --install /usr/bin/jdeprscan jdeprscan ${scrpth}/bin/jdeprscan 100
+sudo update-alternatives --install /usr/bin/jdeps jdeps ${scrpth}/bin/jdeps 100 \
+                         --slave /usr/share/man/man1/jdeps.1.gz jdeps.1.gz ${scrpth}/man/man1/jdeps.1.gz
+sudo update-alternatives --install /usr/bin/jexec jexec ${scrpth}/lib/jexec 100
+sudo update-alternatives --install /usr/bin/jimage jimage ${scrpth}/bin/jimage 100
+sudo update-alternatives --install /usr/bin/jjs jjs ${scrpth}/bin/jjs 100 \
+                         --slave /usr/share/man/man1/jjs.1.gz jjs.1.gz ${scrpth}/man/man1/jjs.1.gz
+sudo update-alternatives --install /usr/bin/jlink jlink ${scrpth}/bin/jlink 100
+sudo update-alternatives --install /usr/bin/jmap jmap ${scrpth}/bin/jmap 100 \
+                         --slave /usr/share/man/man1/jmap.1.gz jmap.1.gz ${scrpth}/man/man1/jmap.1.gz
+sudo update-alternatives --install /usr/bin/jmod jmod ${scrpth}/bin/jmod 100
+sudo update-alternatives --install /usr/bin/jps jps ${scrpth}/bin/jps 100
+sudo update-alternatives --install /usr/bin/jrunscript jrunscript ${scrpth}/bin/jrunscript 100 \
+                         --slave /usr/share/man/man1/jrunscript.1.gz jrunscript.1.gz ${scrpth}/man/man1/jrunscript.1.gz
+sudo update-alternatives --install /usr/bin/jshell jshell ${scrpth}/bin/jshell 100
+sudo update-alternatives --install /usr/bin/jstack jstack ${scrpth}/bin/jstack 100
+sudo update-alternatives --install /usr/bin/jstat jstat ${scrpth}/bin/jstat 100
+sudo update-alternatives --install /usr/bin/keytool keytool ${scrpth}/bin/keytool 100 \
+                         --slave /usr/share/man/man1/keytool.1.gz keytool.1.gz ${scrpth}/man/man1/keytool.1.gz
+sudo update-alternatives --install /usr/bin/pack200 pack200 ${scrpth}/bin/pack200 100 \
+                         --slave /usr/share/man/man1/pack200.1.gz pack200.1.gz ${scrpth}/man/man1/pack200.1.gz
+sudo update-alternatives --install /usr/bin/rmic rmic ${scrpth}/bin/rmic 100 \
+                         --slave /usr/share/man/man1/rmic.1.gz rmic.1.gz ${scrpth}/man/man1/rmic.1.gz
+sudo update-alternatives --install /usr/bin/rmid rmid ${scrpth}/bin/rmid 100 \
+                         --slave /usr/share/man/man1/rmid.1.gz rmid.1.gz ${scrpth}/man/man1/rmid.1.gz
+sudo update-alternatives --install /usr/bin/rmiregistry rmiregistry ${scrpth}/bin/rmiregistry 100 \
+                         --slave /usr/share/man/man1/rmiregistry.1.gz rmiregistry.1.gz ${scrpth}/man/man1/rmiregistry.1.gz
+sudo update-alternatives --install /usr/bin/serialver serialver ${scrpth}/bin/serialver 100 \
+                         --slave /usr/share/man/man1/serialver.1.gz serialver.1.gz ${scrpth}/man/man1/serialver.1.gz
+sudo update-alternatives --install /usr/bin/unpack200 unpack200 ${scrpth}/bin/unpack200 100 \
+                         --slave /usr/share/man/man1/unpack200.1.gz unpack200.1.gz ${scrpth}/man/man1/unpack200.1.gz
+
+
