@@ -2,11 +2,11 @@
 Attempt at building a Spring Boot development environment in Docker
 
 ## Build the image
-```
-docker compose build dev
+```bash
+PRJ="./project" docker compose build dev
 ```
 
 ## Run the dev service for development
-```
+```bash
 USER=$(whoami) USERID=$(id -u) PRJ="./project" docker compose run --rm -p 8080:8080 dev /bin/bash
 ```
