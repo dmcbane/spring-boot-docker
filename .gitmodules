@@ -1,0 +1,3 @@
+[submodule "springbootthymeleaf"]
+	path = springbootthymeleaf
+	url = git@github.com:dmcbane/spring-boot-thymeleaf-lombok.git
