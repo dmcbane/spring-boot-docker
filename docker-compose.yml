@@ -6,13 +6,13 @@ services:
       args:
         - USER="${USER:-gradle}"
         - USERID=${USERID:-1000}
-        - PROJECT="${PRJ:-./project}"
     image: spring-dev:1.0.0
     stdin_open: true
     tty: true
     tmpfs:
       - /tmp
     volumes:
-      - $PROJECT:/app
+      - ${PRJ}:/app
+      - ${DOTGRADLE}:/dotgradle
     ports:
       - 8080:8080

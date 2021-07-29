@@ -20,18 +20,15 @@ RUN apt-get update && \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && truncate -s 0 /var/log/*log
 
-RUN mkdir /app
+RUN mkdir /app && mkdir /dotgradle
 RUN \
   ## if [[ $USERID -ne 1000 ]] ; then \
   set -o errexit -o nounset \
   && echo "Adding internal user and group" \
   && groupadd --system --gid $USERID $USER \
   && useradd --system --gid $USERID --uid $USERID --shell /bin/bash --create-home $USER \
-  && mkdir /home/$USER/.gradle \
+  && ln -s /dotgradle /home/$USER/.gradle \
   && chown --recursive $USER:$USER /home/$USER
-## \
-## && echo "Symlinking root Gradle cache to gradle Gradle cache" \
-## && ln -s /home/$USER/.gradle /root/.gradle ; \
 ##  fi
 WORKDIR /app
 ## COPY ./project /app/
