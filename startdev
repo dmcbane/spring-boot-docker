@@ -1,14 +1,47 @@
 #! /usr/bin/env bash
 
-if [[ $# -ne 1 ]]; then
+spth="$(cd "$(dirname "$0")"; pwd -P)"
+ppth="${spth}/project"
+
+if [ $# -gt 1 ]; then
     echo "Usage: $(basename "$0") <project path>"
     exit 2
+elif [ $# -eq 1 ]; then
+    newpth="$(cd "$(dirname "$1")"; pwd -P)/$(basename $1)"
+    if [ ! -d "${newpth}" ]; then
+        echo "Usage: $(basename "$0") <project path>"
+        echo ""
+        echo "<project path> must be a directory"
+        exit 3
+    else
+        if [ "${ppth}" == "${newpth}" ]; then
+            echo "Can't change <project path> to itself"
+            echo ""
+            echo "Try $(basename "$0") without parameters"
+            exit 4
+        elif [ -L "${ppth}" ]; then
+            rm "${ppth}"
+        elif [ -f "${ppth}" ] || [ -d "${ppth}" ]; then
+            echo "Can't change <project path> to ${newpth}"
+            echo "${ppth} is not a symlink"
+            exit 5
+        fi
+        ln -s "${newpth}" "${ppth}"
+    fi
+elif [ $# -eq 0 ]; then
+    if [ ! -d "${ppth}" ] && [ ! -f "${ppth}" ]; then
+        echo "${ppth} does not exist"
+        echo ""
+        echo "Try $(basename "$0") with a path to the project"
+        echo "Usage: $(basename "$0") <project path>"
+        exit 6
+    fi
 fi
 
-spth="$(cd "$(dirname "$0")"; pwd -P)"
-projectpath="$1"
+if [ ! -d "${ppth}" ]; then
+    echo "$(basename "$0") cannot continue because ${ppth} is not a directory"
+    exit 7
+fi
 
-rm ${spth}/project
-ln -s "$1" "${spth}/project"
+USER=$(whoami) USERID=$(id -u) docker compose run --rm -p 8080:8080 -v "${ppth}":/app -v "${ppth}/.dockerdev/.gradle":/dotgradle dev /bin/bash
 
-USER=$(whoami) USERID=$(id -u) docker compose run --rm -p 8080:8080 -v "${spth}/project":/app -v "${spth}/project/.dockerdev/.gradle":/dotgradle dev /bin/bash
