@@ -1,6 +1,0 @@
-[submodule "springbootthymeleaf"]
-	path = springbootthymeleaf
-	url = git@github.com:dmcbane/spring-boot-thymeleaf-lombok.git
-[submodule "springbootnolembok"]
-	path = springbootnolembok
-	url = git@github.com:dmcbane/springboot-thymeleaf.git

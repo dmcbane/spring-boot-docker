@@ -9,6 +9,6 @@ spth="$(cd "$(dirname "$0")"; pwd -P)"
 projectpath="$1"
 
 rm ${spth}/project
-ln -s ${projectpath} ${spth}/project
+ln -s "$1" "${spth}/project"
 
-USER=$(whoami) USERID=$(id -u) PRJ=${spth}/project DOTGRADLE={spth}/project/.dockerdev/.gradle docker compose run --rm -p 8080:8080 dev /bin/bash
+USER=$(whoami) USERID=$(id -u) docker compose run --rm -p 8080:8080 -v "${spth}/project":/app -v "${spth}/project/.dockerdev/.gradle":/dotgradle dev /bin/bash
