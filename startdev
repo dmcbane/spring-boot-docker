@@ -1,6 +1,11 @@
 #! /usr/bin/env bash
 
-spth="$(cd "$(dirname "$0")"; pwd -P)"
+if [ -L "$0" ]; then
+    s="$(realpath "$0")"  # try readlink -f if realpath is missing
+else
+    s="$0"
+fi
+spth="$(cd "$(dirname "$s")"; pwd -P)"
 ppth="${spth}/project"
 
 if [ $# -gt 1 ]; then
@@ -42,6 +47,8 @@ if [ ! -d "${ppth}" ]; then
     echo "$(basename "$0") cannot continue because ${ppth} is not a directory"
     exit 7
 fi
+
+cd "${spth}"
 
 USER=$(whoami) USERID=$(id -u) docker compose run --rm -p 8080:8080 -v "${ppth}":/app -v "${ppth}/.dockerdev/.gradle":/dotgradle dev /bin/bash
 
