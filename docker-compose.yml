@@ -2,17 +2,34 @@ version: "3.8"
 services:
   dev:
     build:
-      dockerfile: Dockerfile
+      dockerfile: .dockerdev/Dockerfile_dev
       args:
         - USER="${USER:-gradle}"
         - USERID=${USERID:-1000}
-    image: spring-dev:1.0.0
+    image: ${USER}/spring-dev:latest
     stdin_open: true
     tty: true
     tmpfs:
       - /tmp
     volumes:
-      - ${PRJ}:/app
+      - ./project:/app
       - ${DOTGRADLE}:/dotgradle
     ports:
       - 8080:8080
+  builder:
+    build:
+      context: ./project
+      dockerfile: ../.dockerdev/Dockerfile_build
+      args:
+        - USER="${USER:-gradle}"
+        - USERID=${USERID:-1000}
+    image: ${USER}/spring-build:latest
+    tmpfs:
+      - /tmp
+    volumes:
+      - ./project:/app
+      - ${DOTGRADLE}:/dotgradle
+  spring:
+    image: ${USER}/spring-build:latest
+    depends_on:
+      - builder

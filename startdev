@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $(basename "$0") <project path>"
+    exit 2
+fi
+
+spth="$(cd "$(dirname "$0")"; pwd -P)"
+projectpath="$1"
+
+rm ${spth}/project
+ln -s ${projectpath} ${spth}/project
+
+USER=$(whoami) USERID=$(id -u) PRJ=${spth}/project DOTGRADLE={spth}/project/.dockerdev/.gradle docker compose run --rm -p 8080:8080 dev /bin/bash
