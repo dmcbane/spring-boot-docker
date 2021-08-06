@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 if [ -L "$0" ]; then
-    s="$(realpath "$0")"  # try readlink -f if realpath is missing
+    s="$(realpath -e "$0")"  # try readlink -f if realpath is missing
 else
     s="$0"
 fi
